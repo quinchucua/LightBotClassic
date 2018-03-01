@@ -9,6 +9,7 @@ import Logica.Sistema;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -66,6 +67,8 @@ public class Vista extends javax.swing.JFrame {
         jBGiroDer = new javax.swing.JButton();
         jBEncender = new javax.swing.JButton();
         jPSecuencia = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTResultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +138,10 @@ public class Vista extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jTResultado.setColumns(20);
+        jTResultado.setRows(5);
+        jScrollPane1.setViewportView(jTResultado);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,7 +156,8 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 215, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -163,7 +171,9 @@ public class Vista extends javax.swing.JFrame {
                         .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -184,6 +194,8 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPOpciones;
     private javax.swing.JPanel jPSecuencia;
     private javax.swing.JPanel jPTablero;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTResultado;
     // End of variables declaration//GEN-END:variables
 
     //Metodos Get y Set de los componenetes de la vista
@@ -258,5 +270,15 @@ public class Vista extends javax.swing.JFrame {
     public void setjPTablero(JPanel jPTablero) {
         this.jPTablero = jPTablero;
     }
+
+    public JTextArea getjTResultado() {
+        return jTResultado;
+    }
+
+    public void setjTResultado(JTextArea jTResultado) {
+        this.jTResultado = jTResultado;
+    }
+    
+    
 
 }

@@ -6,6 +6,7 @@
 package Presentacion;
 
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JButton;
 
 /**
@@ -61,6 +62,15 @@ public class HiloDibujar implements Runnable {
                 b.setBounds(i * an / co, j * al / fi, an / co, al / fi);
                 this.modelo.vista.getjPTablero().add(b);
             }
+        }
+        int ultimomovimiento = this.modelo.sistema.getPersonaje().getUltimomovimiento();
+        if(ultimomovimiento!=-1 )
+        {
+            Component c = this.modelo.vista.getjPSecuencia().getComponent(this.modelo.sistema.getPersonaje().getUltimomovimiento());
+            JButton b = (JButton)c;
+
+            this.modelo.vista.getjTResultado().setText("Ultimo movimiento Realizado : "+(ultimomovimiento+1)+"\n Tipo Movimiento : "+b.getText());
+            
         }
         this.modelo.vista.getjPTablero().repaint();
     }

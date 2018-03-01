@@ -17,7 +17,7 @@ public class Personaje implements Runnable {
     private int fila;
     Tablero tablero;
     Thread hilopersonaje;
-    int ultimomovimiento;
+    int ultimomovimiento=-1;
 
     public Personaje(Tablero tablero) {
         this.tablero = tablero;
@@ -83,7 +83,17 @@ public class Personaje implements Runnable {
 
     public void setFila(int fila) {
         this.fila = fila;
-    }   
+    }
+
+    public int getUltimomovimiento() {
+        return ultimomovimiento;
+    }
+
+    public void setUltimomovimiento(int ultimomovimiento) {
+        this.ultimomovimiento = ultimomovimiento;
+    }
+    
+    
 
     @Override
     public void run() {
@@ -98,6 +108,9 @@ public class Personaje implements Runnable {
             if (resultado==false)
             {
                 break;
+            }else
+            {
+                this.ultimomovimiento = i;
             }
         }
         this.hilopersonaje.stop();
