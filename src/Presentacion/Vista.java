@@ -66,7 +66,6 @@ public class Vista extends javax.swing.JFrame {
         jBGiroDer = new javax.swing.JButton();
         jBEncender = new javax.swing.JButton();
         jPSecuencia = new javax.swing.JPanel();
-        jTResultados = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,8 +149,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 215, Short.MAX_VALUE))
-                    .addComponent(jTResultados))
+                        .addGap(0, 215, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -165,9 +163,7 @@ public class Vista extends javax.swing.JFrame {
                         .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTResultados))
+                .addComponent(jPOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -188,7 +184,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPOpciones;
     private javax.swing.JPanel jPSecuencia;
     private javax.swing.JPanel jPTablero;
-    private javax.swing.JTextField jTResultados;
     // End of variables declaration//GEN-END:variables
 
     //Metodos Get y Set de los componenetes de la vista
@@ -263,15 +258,5 @@ public class Vista extends javax.swing.JFrame {
     public void setjPTablero(JPanel jPTablero) {
         this.jPTablero = jPTablero;
     }
-
-    public JTextField getjTResultados() {
-        return jTResultados;
-    }
-
-    public void setjTResultados(JTextField jTResultados) {
-        this.jTResultados = jTResultados;
-    }
-    
-    
 
 }

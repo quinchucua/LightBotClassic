@@ -2,6 +2,8 @@ package Presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author ASUS
@@ -31,7 +33,11 @@ public class Controlador implements ActionListener {
             this.vista.getModelo().agregarbotones("Encender");
         }
         if (e.getSource() == this.vista.getjBPlay()) {
-            this.vista.getModelo().ejecutarsecuencia();
+            try {
+                this.vista.getModelo().ejecutarsecuencia();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         for (int i = 0; i < this.vista.getjPSecuencia().getComponentCount(); i++) {

@@ -3,7 +3,6 @@ package Presentacion;
 import Logica.Sistema;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 
@@ -12,16 +11,17 @@ import javax.swing.JButton;
  * @version 1.0
  * @created 27-feb.-2018 11:11:24 a.m.
  */
-public class Modelo implements Runnable {
+public class Modelo {
 
     public Sistema sistema;
     public Vista vista;
     boolean running;
-    Thread hilodibujo;
+    Thread hilodibujar;
 
     public Modelo() {
+        HiloDibujar h = new HiloDibujar(this);
+        this.hilodibujar = new Thread(h);
         running = false;
-        this.hilodibujo = new Thread(this);
     }
 
     public void inicio() {
@@ -30,49 +30,7 @@ public class Modelo implements Runnable {
         sistema = new Sistema();
         vista = new Vista(this);
         vista.getjPSecuencia().setLayout(new GridLayout(4, 5));
-        this.hilodibujo.start();
-    }
-
-    public void dibujar() {
-        this.vista.getjPTablero().removeAll();
-
-        int an = this.vista.getjPTablero().getWidth();
-        int al = this.vista.getjPTablero().getHeight();
-        int fi = this.sistema.getTablero().getFilas();
-        int co = this.sistema.getTablero().getColumnas();
-
-        for (int i = 0; i < co; i++) {
-            for (int j = 0; j < fi; j++) {
-                JButton b = new JButton();
-                if (this.sistema.getTablero().getMatriz()[j][i] == 1) {
-                    b.setBackground(Color.BLUE);
-                }
-                if (this.sistema.getTablero().getMatriz()[j][i] == 0) {
-                    b.setBackground(Color.RED);
-                }
-                if (this.sistema.getTablero().getMatriz()[j][i] == 2) {
-                    b.setBackground(Color.YELLOW);
-                }
-                if (this.sistema.getPersonaje().getFila() == j && this.sistema.getPersonaje().getColumna() == i) {
-                    b.setBackground(Color.GREEN);
-                }
-
-                b.setBounds(i * an / co, j * al / fi, an / co, al / fi);
-                this.vista.getjPTablero().add(b);
-            }
-        }
-        this.vista.getjPTablero().repaint();
-    }
-
-    @Override
-    public void run() {
-        while (running) {
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException ex) {
-            }
-            dibujar();
-        }
+        this.hilodibujar.start();
     }
 
     public void agregarbotones(String tipo) {
@@ -94,9 +52,8 @@ public class Modelo implements Runnable {
         ubicarbotones();
         this.vista.getjPSecuencia().repaint();
     }
-    
-    public void ubicarbotones()
-    {
+
+    public void ubicarbotones() {
         int numeroele = this.vista.getjPSecuencia().getComponentCount();
         for (int i = 0; i < numeroele; i++) {
             Component b = this.vista.getjPSecuencia().getComponent(i);
@@ -104,32 +61,19 @@ public class Modelo implements Runnable {
             int fil = i - col * 3;
             b.setBounds(fil * 90, col * 40, 90, 40);
         }
-        
+
     }
-    
-    public void ejecutarsecuencia()
-    {
-        boolean resultado = true;
-        this.vista.getjTResultados().setText("");
+
+    public void ejecutarsecuencia() throws InterruptedException {
         this.sistema.getTablero().generartablero(this.sistema.getPersonaje());
         this.sistema.getPersonaje().olvidarmovimientos();
         for (int i = 0; i < this.vista.getjPSecuencia().getComponentCount(); i++) {
             Component p = this.vista.getjPSecuencia().getComponent(i);
             JButton b = (JButton) p;
             this.sistema.getPersonaje().agregarMovimiento(b.getText());
-            resultado = this.sistema.getPersonaje().moverse();
             
-            if(resultado==false)
-            {
-                this.vista.getjTResultados().setText("No se pudo realizar el paso #"+(i+1)+" "+b.getText());
-                break;
-            }
         }
-        
-        if(resultado==true)
-        {
-            this.vista.getjTResultados().setText("Todos los pasos completados");
-        }
+        this.sistema.getPersonaje().moverse();
         this.sistema.getTablero().imprimirtablero(this.sistema.getPersonaje());
     }
 }

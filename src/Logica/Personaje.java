@@ -1,19 +1,23 @@
 package Logica;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author ASUS
  * @version 1.0
  * @created 27-feb.-2018 11:11:25 a.m.
  */
-public class Personaje {
+public class Personaje implements Runnable {
 
     private ArrayList<Movimiento> movimientos;
     private int orientacion;
     private int columna;
     private int fila;
-    private Tablero tablero;
+    Tablero tablero;
+    Thread hilopersonaje;
+    int ultimomovimiento;
 
     public Personaje(Tablero tablero) {
         this.tablero = tablero;
@@ -42,8 +46,10 @@ public class Personaje {
         }
     }
 
-    public boolean moverse() {
-        return movimientos.get(movimientos.size()-1).ejecutar(this, tablero);
+    public void moverse() throws InterruptedException {
+        boolean resultado;
+        this.hilopersonaje = new Thread(this);
+        this.hilopersonaje.start();
     }
 
     //Metodos get y set
@@ -77,6 +83,24 @@ public class Personaje {
 
     public void setFila(int fila) {
         this.fila = fila;
+    }   
+
+    @Override
+    public void run() {
+        boolean resultado;
+        for (int i = 0; i < this.movimientos.size(); i++) {
+            try {
+                this.hilopersonaje.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Personaje.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            resultado = movimientos.get(i).ejecutar(this, tablero);
+            if (resultado==false)
+            {
+                break;
+            }
+        }
+        this.hilopersonaje.stop();
     }
 
 }

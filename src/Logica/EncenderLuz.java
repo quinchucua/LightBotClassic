@@ -25,8 +25,13 @@ public class EncenderLuz implements Movimiento {
 	 */
         @Override
 	public boolean ejecutar(Personaje personaje, Tablero tablero){
-            System.out.println("Implementar movimiento Encender Luz");
-            return true;
+            if(tablero.getMatriz()[personaje.getFila()][personaje.getColumna()]==2)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
 	}
 
 }
