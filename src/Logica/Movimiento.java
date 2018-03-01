@@ -7,13 +7,13 @@ package Logica;
  * @version 1.0
  * @created 27-feb.-2018 11:11:23 a.m.
  */
-public interface Movimientos {
+public interface Movimiento {
 
 	/**
 	 * 
 	 * @param personaje
 	 * @param tablero
 	 */
-	abstract public int ejecutar(Personaje personaje, Tablero tablero);
+	abstract public boolean ejecutar(Personaje personaje, Tablero tablero);
 
 }

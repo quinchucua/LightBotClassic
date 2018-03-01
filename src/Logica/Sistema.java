@@ -11,8 +11,8 @@ public class Sistema {
     private Tablero tablero;
 
     public Sistema() {
-        personaje = new Personaje();
         tablero = new Tablero();
+        personaje = new Personaje(tablero);
         tablero.generartablero(personaje);
         tablero.imprimirtablero(personaje);
     }

@@ -28,6 +28,7 @@ public class Tablero {
     }
 
     public void imprimirtablero(Personaje personaje) {
+        System.out.println("________________________________");
         for (int i = 0; i < filas; i++) {
             String a = "";
             int n;

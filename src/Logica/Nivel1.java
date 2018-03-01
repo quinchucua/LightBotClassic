@@ -52,7 +52,7 @@ public class Nivel1 extends Nivel {
     public void ubicarpersonaje(Personaje personaje)
     {
         personaje.setColumna(0);
-        personaje.setFila(0);
+        personaje.setFila(2);
         personaje.setOrientacion(0);
     }
 

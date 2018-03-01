@@ -7,7 +7,9 @@ package Presentacion;
 
 import Logica.Sistema;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,30 +22,26 @@ public class Vista extends javax.swing.JFrame {
      */
     private final Modelo modelo;
     private Controlador controlador;
-    
+
     public Vista(Modelo modelo) {
         this.modelo = modelo;
         initComponents();
         asignarEventos();
         this.setVisible(true);
     }
-    
-    public Modelo getModelo()
-    {
+
+    public Modelo getModelo() {
         return modelo;
     }
-    
-    public Controlador getControlador()
-    {
-        if(controlador == null)
-        {
-            controlador=new Controlador(this);
+
+    public Controlador getControlador() {
+        if (controlador == null) {
+            controlador = new Controlador(this);
         }
         return controlador;
     }
-    
-    public void asignarEventos()
-    {
+
+    public void asignarEventos() {
         this.jBPlay.addActionListener(this.getControlador());
         this.jBAvanzar.addActionListener(this.getControlador());
         this.jBGiroIzq.addActionListener(this.getControlador());
@@ -68,6 +66,7 @@ public class Vista extends javax.swing.JFrame {
         jBGiroDer = new javax.swing.JButton();
         jBEncender = new javax.swing.JButton();
         jPSecuencia = new javax.swing.JPanel();
+        jTResultados = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,10 +147,11 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jPTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 215, Short.MAX_VALUE))
-                    .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTResultados))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -164,8 +164,10 @@ public class Vista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTResultados))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -186,11 +188,10 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPOpciones;
     private javax.swing.JPanel jPSecuencia;
     private javax.swing.JPanel jPTablero;
+    private javax.swing.JTextField jTResultados;
     // End of variables declaration//GEN-END:variables
-    
+
     //Metodos Get y Set de los componenetes de la vista
-    
-    
     public JPanel getjPanel1() {
         return jPTablero;
     }
@@ -262,7 +263,15 @@ public class Vista extends javax.swing.JFrame {
     public void setjPTablero(JPanel jPTablero) {
         this.jPTablero = jPTablero;
     }
+
+    public JTextField getjTResultados() {
+        return jTResultados;
+    }
+
+    public void setjTResultados(JTextField jTResultados) {
+        this.jTResultados = jTResultados;
+    }
     
     
-    
+
 }

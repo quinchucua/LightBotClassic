@@ -7,7 +7,7 @@ package Logica;
  * @version 1.0
  * @created 27-feb.-2018 11:11:23 a.m.
  */
-public class EncenderLuz implements Movimientos {
+public class EncenderLuz implements Movimiento {
 
 	public EncenderLuz(){
 
@@ -24,8 +24,9 @@ public class EncenderLuz implements Movimientos {
      * @return 
 	 */
         @Override
-	public int ejecutar(Personaje personaje, Tablero tablero){
-		return 0;
+	public boolean ejecutar(Personaje personaje, Tablero tablero){
+            System.out.println("Implementar movimiento Encender Luz");
+            return true;
 	}
 
 }

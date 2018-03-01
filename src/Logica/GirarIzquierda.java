@@ -7,7 +7,7 @@ package Logica;
  * @version 1.0
  * @created 27-feb.-2018 11:11:23 a.m.
  */
-public class GirarIzquierda implements Movimientos {
+public class GirarIzquierda implements Movimiento {
 
 	public GirarIzquierda(){
 
@@ -22,8 +22,15 @@ public class GirarIzquierda implements Movimientos {
 	 * @param personaje
 	 * @param tablero
 	 */
-	public int ejecutar(Personaje personaje, Tablero tablero){
-		return 0;
+	public boolean ejecutar(Personaje personaje, Tablero tablero){
+            if(personaje.getOrientacion()>0)
+            {
+                personaje.setOrientacion(personaje.getOrientacion()-1);
+            }else
+            {
+                personaje.setOrientacion(3);
+            }
+            return true;
 	}
 
 }

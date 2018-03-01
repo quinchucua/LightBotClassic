@@ -34,10 +34,10 @@ public class Modelo implements Runnable {
     }
 
     public void dibujar() {
-        this.vista.getjPanel1().repaint();
+        this.vista.getjPTablero().removeAll();
 
-        int an = this.vista.getjPanel1().getWidth();
-        int al = this.vista.getjPanel1().getHeight();
+        int an = this.vista.getjPTablero().getWidth();
+        int al = this.vista.getjPTablero().getHeight();
         int fi = this.sistema.getTablero().getFilas();
         int co = this.sistema.getTablero().getColumnas();
 
@@ -53,14 +53,15 @@ public class Modelo implements Runnable {
                 if (this.sistema.getTablero().getMatriz()[j][i] == 2) {
                     b.setBackground(Color.YELLOW);
                 }
-                if (this.sistema.getPersonaje().getFila() == i && this.sistema.getPersonaje().getColumna() == j) {
+                if (this.sistema.getPersonaje().getFila() == j && this.sistema.getPersonaje().getColumna() == i) {
                     b.setBackground(Color.GREEN);
                 }
 
                 b.setBounds(i * an / co, j * al / fi, an / co, al / fi);
-                this.vista.getjPanel1().add(b);
+                this.vista.getjPTablero().add(b);
             }
         }
+        this.vista.getjPTablero().repaint();
     }
 
     @Override
@@ -108,6 +109,27 @@ public class Modelo implements Runnable {
     
     public void ejecutarsecuencia()
     {
-        System.out.println("Se ejecuta lo que este en el panel de secuencia");
+        boolean resultado = true;
+        this.vista.getjTResultados().setText("");
+        this.sistema.getTablero().generartablero(this.sistema.getPersonaje());
+        this.sistema.getPersonaje().olvidarmovimientos();
+        for (int i = 0; i < this.vista.getjPSecuencia().getComponentCount(); i++) {
+            Component p = this.vista.getjPSecuencia().getComponent(i);
+            JButton b = (JButton) p;
+            this.sistema.getPersonaje().agregarMovimiento(b.getText());
+            resultado = this.sistema.getPersonaje().moverse();
+            
+            if(resultado==false)
+            {
+                this.vista.getjTResultados().setText("No se pudo realizar el paso #"+(i+1)+" "+b.getText());
+                break;
+            }
+        }
+        
+        if(resultado==true)
+        {
+            this.vista.getjTResultados().setText("Todos los pasos completados");
+        }
+        this.sistema.getTablero().imprimirtablero(this.sistema.getPersonaje());
     }
 }
