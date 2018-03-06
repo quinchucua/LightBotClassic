@@ -27,6 +27,7 @@ public class EncenderLuz implements Movimiento {
 	public boolean ejecutar(Personaje personaje, Tablero tablero){
             if(tablero.getMatriz()[personaje.getFila()][personaje.getColumna()]==2)
             {
+                tablero.getMatriz()[personaje.getFila()][personaje.getColumna()]=3;
                 return true;
             }else
             {

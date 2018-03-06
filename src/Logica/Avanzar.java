@@ -27,8 +27,8 @@ public class Avanzar implements Movimiento {
             int filap = personaje.getFila();
             int columnap = personaje.getColumna();
             
-            int numfilast = tablero.getFilas();
-            int numcolumnast = tablero.getColumnas();
+            int numfilast = tablero.getFilas()-1;
+            int numcolumnast = tablero.getColumnas()-1;
             
             if(personaje.getOrientacion()==0)//mirando hacia arriba
             {

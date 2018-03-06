@@ -13,8 +13,8 @@ public class Nivel1 extends Nivel {
 
     @Override
     public void construir(Tablero tablero, Personaje personaje) {
-        int filas=3;
-        int columnas=3;
+        int filas=5;
+        int columnas=7;
         
         int[][] matriz = new int[filas][columnas];
         
@@ -36,24 +36,35 @@ public class Nivel1 extends Nivel {
     public void crearcamino(int[][] matriz)
     {
         matriz[0][0]=1;
+        matriz[0][1]=1;
+        matriz[0][2]=1;
         matriz[1][0]=1;
+        matriz[2][0]=1;
+        matriz[3][0]=1;
+        matriz[4][0]=1;
         matriz[2][0]=1;
         matriz[2][1]=1;
         matriz[2][2]=1;
         matriz[1][2]=1;
         matriz[0][2]=1;
+        matriz[0][3]=1;
+        matriz[1][3]=1;
+        matriz[2][3]=1;
+        matriz[3][3]=1;
+        matriz[4][1]=1;
+        matriz[4][3]=1;
     }
     
     public void ponerluces(int[][] matriz)
     {
-        matriz[0][2]=2;
+        matriz[4][2]=2;
     }
     
     public void ubicarpersonaje(Personaje personaje)
     {
         personaje.setColumna(0);
-        personaje.setFila(2);
-        personaje.setOrientacion(0);
+        personaje.setFila(0);
+        personaje.setOrientacion(2);
     }
 
 }
