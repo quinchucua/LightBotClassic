@@ -89,6 +89,7 @@ public class Modelo implements Runnable{
         for (int i = 0; i < co; i++) {
             for (int j = 0; j < fi; j++) {
                 JButton b = new JButton();
+                b.setEnabled(false);
                 if (this.sistema.getTablero().getMatriz()[j][i] == 1) {
                     b.setBackground(Color.LIGHT_GRAY);
                 }
@@ -108,21 +109,25 @@ public class Modelo implements Runnable{
                         //b.setText("Arriba");
                         ImageIcon ico = new ImageIcon("media/arriba3.png");
                         b.setIcon(ico);
+                        b.setEnabled(true);
                     }
                     if (orientacion == 1) {
                         //b.setText("Derecha");
                         ImageIcon ico = new ImageIcon("media/der3.png");
                         b.setIcon(ico);
+                        b.setEnabled(true);
                     }
                     if (orientacion == 2) {
                         //b.setText("Abajo");
                         ImageIcon ico = new ImageIcon("media/abajo3.png");
                         b.setIcon(ico);
+                        b.setEnabled(true);
                     }
                     if (orientacion == 3) {
                         //b.setText("Izquierda");
                         ImageIcon ico = new ImageIcon("media/izq3.png");
                         b.setIcon(ico);
+                        b.setEnabled(true);
                     }
                 }
 
