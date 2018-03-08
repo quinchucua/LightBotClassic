@@ -1,5 +1,6 @@
 package Presentacion;
 
+import Logica.FabricaBotones;
 import Logica.Sistema;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,6 +19,7 @@ public class Modelo implements Runnable{
 
     public Sistema sistema;
     public Vista vista;
+    public FabricaBotones fabricaBotones;
     boolean running;
     Thread hilodibujar;
 
@@ -37,9 +39,10 @@ public class Modelo implements Runnable{
     }
 
     public void agregarbotones(String tipo) {
+        fabricaBotones = new FabricaBotones();
         int numeroele = this.vista.getjPSecuencia().getComponentCount();
         if (numeroele < 18) {
-            JButton b = new JButton(tipo);
+            JButton b = fabricaBotones.getBoton(tipo);
             int col = numeroele / 3;
             int fil = numeroele - col * 3;
             b.setBounds(fil * 90, col * 40, 90, 40);
