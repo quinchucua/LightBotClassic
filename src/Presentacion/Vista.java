@@ -45,6 +45,7 @@ public class Vista extends javax.swing.JFrame {
         this.jBGiroIzq.addActionListener(this.getControlador());
         this.jBGiroDer.addActionListener(this.getControlador());
         this.jBEncender.addActionListener(this.getControlador());
+        this.jBSiguiente.addActionListener(this.getControlador());
     }
 
     /**
@@ -66,6 +67,7 @@ public class Vista extends javax.swing.JFrame {
         jPSecuencia = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTResultado = new javax.swing.JTextArea();
+        jBSiguiente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +146,9 @@ public class Vista extends javax.swing.JFrame {
         jTResultado.setRows(5);
         jScrollPane1.setViewportView(jTResultado);
 
+        jBSiguiente.setText("Siguiente");
+        jBSiguiente.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,6 +163,8 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBSiguiente)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
                 .addContainerGap())
@@ -168,7 +175,9 @@ public class Vista extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBPlay, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addComponent(jBSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPSecuencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,6 +202,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton jBGiroDer;
     private javax.swing.JButton jBGiroIzq;
     private javax.swing.JButton jBPlay;
+    private javax.swing.JButton jBSiguiente;
     private javax.swing.JPanel jPOpciones;
     private javax.swing.JPanel jPSecuencia;
     private javax.swing.JPanel jPTablero;
@@ -280,6 +290,15 @@ public class Vista extends javax.swing.JFrame {
     public void setjTResultado(JTextArea jTResultado) {
         this.jTResultado = jTResultado;
     }
+
+    public JButton getjBSiguiente() {
+        return jBSiguiente;
+    }
+
+    public void setjBSiguiente(JButton jBSiguiente) {
+        this.jBSiguiente = jBSiguiente;
+    }
+    
     
     
 

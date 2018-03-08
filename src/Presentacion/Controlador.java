@@ -32,6 +32,9 @@ public class Controlador implements ActionListener {
         if (e.getSource() == this.vista.getjBEncender()) {
             this.vista.getModelo().agregarbotones("Encender");
         }
+        if(e.getSource() == this.vista.getjBSiguiente()){
+            this.vista.getModelo().siguientenivel();
+        }
         if (e.getSource() == this.vista.getjBPlay()) {
             try {
                 this.vista.getModelo().ejecutarsecuencia();

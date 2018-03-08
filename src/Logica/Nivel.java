@@ -10,11 +10,11 @@ import java.io.ObjectInputStream;
  * @version 1.0
  * @created 27-feb.-2018 11:11:24 a.m.
  */
-public class Nivel1 extends Nivel {
+public class Nivel {
     DatosNivel nivel = null;
-    public Nivel1() {
+    public Nivel(String ubicacion) {
         try {
-            FileInputStream fileIn = new FileInputStream("./niveles/fuck.ser");
+            FileInputStream fileIn = new FileInputStream(ubicacion);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             nivel = (DatosNivel) in.readObject();
             in.close();
@@ -30,7 +30,6 @@ public class Nivel1 extends Nivel {
         System.out.println(nivel.getColumnas());
     }
 
-    @Override
     public void construir(Tablero tablero, Personaje personaje) {
         ubicarpersonaje(personaje);
 

@@ -1,6 +1,8 @@
 package Logica;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ASUS
@@ -18,9 +20,14 @@ public class Tablero {
     public Tablero() {
         nivel = 1;
         niveles = new ArrayList();
-
-        Nivel1 nivel1 = new Nivel1();
-        niveles.add(nivel1);
+        String[] n = getNiveles("./niveles/");
+        if(n!=null)
+        {
+            for (int i = 0; i < n.length; i++) {
+                Nivel nivel1 = new Nivel(n[i]);
+                niveles.add(nivel1);
+            }
+        }
     }
 
     public void generartablero(Personaje personaje) {
@@ -40,57 +47,76 @@ public class Tablero {
         }
         System.out.println(" ");
         System.out.println("Ubicacion del personaje");
-        System.out.println("Columna "+personaje.getColumna());
-        System.out.println("Fila "+personaje.getFila());
-        
-        if(personaje.getOrientacion()==0)
-        {
-            System.out.println("Orientacion "+personaje.getOrientacion()+" Arriba ");
+        System.out.println("Columna " + personaje.getColumna());
+        System.out.println("Fila " + personaje.getFila());
+
+        if (personaje.getOrientacion() == 0) {
+            System.out.println("Orientacion " + personaje.getOrientacion() + " Arriba ");
         }
-        if(personaje.getOrientacion()==1)
-        {
-            System.out.println("Orientacion "+personaje.getOrientacion()+" Derecha ");
+        if (personaje.getOrientacion() == 1) {
+            System.out.println("Orientacion " + personaje.getOrientacion() + " Derecha ");
         }
-        if(personaje.getOrientacion()==2)
-        {
-            System.out.println("Orientacion "+personaje.getOrientacion()+" Abajo ");
+        if (personaje.getOrientacion() == 2) {
+            System.out.println("Orientacion " + personaje.getOrientacion() + " Abajo ");
         }
-        if(personaje.getOrientacion()==3)
-        {
-            System.out.println("Orientacion "+personaje.getOrientacion()+" Izquierda ");
+        if (personaje.getOrientacion() == 3) {
+            System.out.println("Orientacion " + personaje.getOrientacion() + " Izquierda ");
         }
     }
-    
-    public boolean lucesencendidas()
-    {
-        int luces=0;
+
+    public boolean lucesencendidas() {
+        int luces = 0;
         for (int i = 0; i < this.getFilas(); i++) {
             for (int j = 0; j < this.getColumnas(); j++) {
-                if(this.matriz[i][j]==2)
-                {
+                if (this.matriz[i][j] == 2) {
                     luces++;
                 }
             }
         }
-        if(luces!=0)
-        {
+        if (luces != 0) {
             return false;
-        }else
-        {
+        } else {
             return true;
         }
     }
-    
-    public void apagarluces()
-    {
+
+    public void apagarluces() {
         for (int i = 0; i < this.getFilas(); i++) {
             for (int j = 0; j < this.getColumnas(); j++) {
-                if(this.matriz[i][j]==3)
-                {
-                    this.matriz[i][j]=2;
+                if (this.matriz[i][j] == 3) {
+                    this.matriz[i][j] = 2;
                 }
             }
-        }       
+        }
+    }
+
+    public static String[] getNiveles(String dir_path) {
+
+        String[] arr_res = null;
+
+        File f = new File(dir_path);
+
+        if (f.isDirectory()) {
+
+            List<String> res = new ArrayList<>();
+            File[] arr_content = f.listFiles();
+
+            int size = arr_content.length;
+
+            for (int i = 0; i < size; i++) {
+
+                if (arr_content[i].isFile()) {
+                    res.add(arr_content[i].toString());
+                }
+            }
+
+            arr_res = res.toArray(new String[0]);
+
+        } else {
+            System.err.println("¡ Path NO válido !");
+        }
+
+        return arr_res;
     }
 
     //Metodos Get y Set
