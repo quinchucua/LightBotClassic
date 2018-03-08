@@ -17,7 +17,7 @@ public class Personaje implements Runnable {
     private int fila;
     Tablero tablero;
     Thread hilopersonaje;
-    int ultimomovimiento=-1;
+    boolean movimientoscompletados=true;
 
     public Personaje(Tablero tablero) {
         this.tablero = tablero;
@@ -85,32 +85,30 @@ public class Personaje implements Runnable {
         this.fila = fila;
     }
 
-    public int getUltimomovimiento() {
-        return ultimomovimiento;
+    public boolean isMovimientoscompletados() {
+        return movimientoscompletados;
     }
 
-    public void setUltimomovimiento(int ultimomovimiento) {
-        this.ultimomovimiento = ultimomovimiento;
+    public void setMovimientoscompletados(boolean movimientoscompletados) {
+        this.movimientoscompletados = movimientoscompletados;
     }
-    
-    
+
 
     @Override
     public void run() {
-        boolean resultado;
+        boolean resultado = true;
+        this.movimientoscompletados=true;
         for (int i = 0; i < this.movimientos.size(); i++) {
             try {
-                this.hilopersonaje.sleep(1000);
+                this.hilopersonaje.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Personaje.class.getName()).log(Level.SEVERE, null, ex);
             }
             resultado = movimientos.get(i).ejecutar(this, tablero);
             if (resultado==false)
             {
+                this.movimientoscompletados=false;
                 break;
-            }else
-            {
-                this.ultimomovimiento = i;
             }
         }
         this.hilopersonaje.stop();

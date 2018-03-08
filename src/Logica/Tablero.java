@@ -60,6 +60,38 @@ public class Tablero {
             System.out.println("Orientacion "+personaje.getOrientacion()+" Izquierda ");
         }
     }
+    
+    public boolean lucesencendidas()
+    {
+        int luces=0;
+        for (int i = 0; i < this.getFilas(); i++) {
+            for (int j = 0; j < this.getColumnas(); j++) {
+                if(this.matriz[i][j]==2)
+                {
+                    luces++;
+                }
+            }
+        }
+        if(luces!=0)
+        {
+            return false;
+        }else
+        {
+            return true;
+        }
+    }
+    
+    public void apagarluces()
+    {
+        for (int i = 0; i < this.getFilas(); i++) {
+            for (int j = 0; j < this.getColumnas(); j++) {
+                if(this.matriz[i][j]==3)
+                {
+                    this.matriz[i][j]=2;
+                }
+            }
+        }       
+    }
 
     //Metodos Get y Set
     public int getColumnas() {

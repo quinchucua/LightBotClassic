@@ -14,7 +14,7 @@ public class Nivel1 extends Nivel {
     DatosNivel nivel = null;
     public Nivel1() {
         try {
-            FileInputStream fileIn = new FileInputStream("fuck.ser");
+            FileInputStream fileIn = new FileInputStream("./niveles/fuck.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             nivel = (DatosNivel) in.readObject();
             in.close();
@@ -32,12 +32,12 @@ public class Nivel1 extends Nivel {
 
     @Override
     public void construir(Tablero tablero, Personaje personaje) {
-
         ubicarpersonaje(personaje);
 
         tablero.setFilas(nivel.getFilas());
         tablero.setColumnas(nivel.getColumnas());
         tablero.setMatriz(nivel.getMatriz());
+        tablero.apagarluces();
     }
 
     public void ubicarpersonaje(Personaje personaje)

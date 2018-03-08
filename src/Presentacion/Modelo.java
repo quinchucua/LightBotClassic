@@ -72,7 +72,6 @@ public class Modelo implements Runnable{
             Component p = this.vista.getjPSecuencia().getComponent(i);
             JButton b = (JButton) p;
             this.sistema.getPersonaje().agregarMovimiento(b.getText());
-            
         }
         this.sistema.getPersonaje().moverse();
         this.sistema.getTablero().imprimirtablero(this.sistema.getPersonaje());
@@ -135,7 +134,14 @@ public class Modelo implements Runnable{
                 this.vista.getjPTablero().add(b);
             }
         }
-        int ultimomovimiento = this.sistema.getPersonaje().getUltimomovimiento();
+        if(!this.sistema.getPersonaje().isMovimientoscompletados())
+        {
+            this.vista.getjTResultado().setText("Los movimientos no se completaron.");
+        }
+        if(this.sistema.getTablero().lucesencendidas())
+        {
+            this.vista.getjTResultado().setText("Nivel Superado");
+        }
         /*
         if(ultimomovimiento!=-1 )
         {
